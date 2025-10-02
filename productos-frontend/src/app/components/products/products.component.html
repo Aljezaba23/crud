@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Productos</h2>
+
+  <!-- Formulario simple -->
+  <form (ngSubmit)="save()">
+    <input placeholder="Nombre" [(ngModel)]="formProduct.name" name="name" required />
+    <input type="number" placeholder="Precio" [(ngModel)]="formProduct.price" name="price" required />
+    <input type="number" placeholder="Stock" [(ngModel)]="formProduct.stock" name="stock" required />
+    <button type="submit">{{ editingId ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </form>
+
+  <hr />
+
+  <!-- Lista -->
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.price}}</td>
+        <td>{{p.stock}}</td>
+        <td>
+          <button (click)="edit(p)">Editar</button>
+          <button (click)="delete(p.id)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
